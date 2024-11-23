@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class StudentGradeTracker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Ask for the number of students
+        System.out.print("Enter the number of students: ");
+        int numOfStudents = scanner.nextInt();
+        
+        // Create arrays to store student names, grades, and averages
+        String[] studentNames = new String[numOfStudents];
+        double[] studentGrades = new double[numOfStudents];
+        double[] averageGrades = new double[numOfStudents];
+        
+        // Loop to get each student's name and grades
+        for (int i = 0; i < numOfStudents; i++) {
+            scanner.nextLine(); // Clear the buffer
+            System.out.print("Enter name of student #" + (i + 1) + ": ");
+            studentNames[i] = scanner.nextLine();
+
+            System.out.print("Enter the grade for " + studentNames[i] + ": ");
+            studentGrades[i] = scanner.nextDouble();
+
+            // Calculate average (in this simple case, we use just one grade per student)
+            averageGrades[i] = studentGrades[i];
+        }
+
+        // Display the grades and averages
+        System.out.println("\nStudent Grades:");
+        System.out.println("------------------------------------------------");
+        for (int i = 0; i < numOfStudents; i++) {
+            String gradeLetter = getGradeLetter(averageGrades[i]);
+            System.out.println(studentNames[i] + " - Grade: " + studentGrades[i] + " - Average: " + averageGrades[i] + " - Letter Grade: " + gradeLetter);
+        }
+
+        scanner.close();
+    }
+
+    // Method to return the letter grade based on the average grade
+    public static String getGradeLetter(double average) {
+        if (average >= 90) {
+            return "A";
+        } else if (average >= 80) {
+            return "B";
+        } else if (average >= 70) {
+            return "C";
+        } else if (average >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+}
